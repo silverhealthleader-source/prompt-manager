@@ -43,7 +43,6 @@ CATEGORIES = [
     "기타"
 ]
 
-
 def input_required(message):
     """빈칸이 아닌 값이 입력될 때까지 반복합니다."""
     while True:
@@ -75,7 +74,6 @@ def select_category():
 
         print("1부터 7까지의 번호를 입력해주세요.")
 
-
 def add_prompt():
     """새로운 프롬프트를 prompts 리스트에 추가합니다."""
     print("\n=== 프롬프트 추가 ===")
@@ -95,6 +93,39 @@ def add_prompt():
 
     print(f"\n'{title}' 프롬프트가 추가되었습니다!")
     print(f"현재 총 {len(prompts)}개의 프롬프트가 있습니다.")
+
+def search_prompt():
+    """제목 또는 내용에 포함된 키워드로 프롬프트를 검색합니다."""
+    print("\n=== 프롬프트 검색 ===")
+
+    keyword = input_required("검색어: ")
+    keyword_lower = keyword.lower()
+
+    search_results = []
+
+    for prompt in prompts:
+        title_lower = prompt["title"].lower()
+        content_lower = prompt["content"].lower()
+
+        if keyword_lower in title_lower or keyword_lower in content_lower:
+            search_results.append(prompt)
+
+    if not search_results:
+        print(f"\n'{keyword}' 검색 결과가 없습니다.")
+        return
+
+    print("\n검색 결과:")
+
+    for number, prompt in enumerate(search_results, start=1):
+        favorite_mark = " ⭐" if prompt["favorite"] else ""
+
+        print(
+            f'{number}. [{prompt["category"]}] '
+            f'{prompt["title"]}{favorite_mark}'
+        )
+
+    print(f"\n{len(search_results)}개의 프롬프트를 찾았습니다.")
+
 
 def show_by_category():
     """선택한 카테고리의 프롬프트만 출력합니다."""
@@ -139,7 +170,6 @@ def show_list():
 
     print(f"\n총 {len(prompts)}개의 프롬프트")
 
-
 def show_menu():
     """프로그램의 메인 메뉴를 화면에 출력합니다."""
     print("\n=== 나만의 프롬프트 관리 ===")
@@ -151,7 +181,6 @@ def show_menu():
     print("6. 즐겨찾기 관리")
     print("7. 즐겨찾기 목록")
     print("0. 종료")
-
 
 def main():
     """메뉴 선택을 반복하여 처리하는 메인 함수입니다."""
@@ -165,14 +194,15 @@ def main():
             show_list()
         elif choice == "3":
             show_by_category()
+        elif choice == "4":
+            search_prompt()
         elif choice == "0":
             print("프롬프트 관리 프로그램을 종료합니다.")
             break
-        elif choice in ["4", "5", "6", "7"]:
+        elif choice in ["5", "6", "7"]:
             print("해당 기능은 다음 단계에서 구현됩니다.")
         else:
             print("잘못된 번호입니다. 0부터 7까지의 번호를 입력해주세요.")
-
 
 if __name__ == "__main__":
     main()

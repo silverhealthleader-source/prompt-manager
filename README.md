@@ -190,6 +190,154 @@ CSV는 중첩 구조와 불리언 값 관리가 불편하고, 데이터베이스
 
 `feature/prompt-list` 브랜치에서 프롬프트 목록 기능을 개발하고, 기능 완성 후 `main` 브랜치에 병합했습니다.
 
+### 공개 저장소 Clone 실행 증빙
+
+GitHub의 공개 샘플 저장소를 실제로 복제하여 원격 저장소 연결과 커밋 로그를 확인했다.
+
+실행 명령:
+
+```powershell
+git clone https://github.com/octocat/Hello-World.git clone-practice
+cd clone-practice
+dir
+git remote -v
+git log --oneline -5
+```
+
+실행 결과:
+
+- `clone-practice` 폴더가 새로 생성됨
+- 복제된 저장소의 README 파일과 폴더 구조 확인
+- `git remote -v`에서 원격 저장소 주소 확인
+- `git log --oneline -5`에서 공개 저장소의 커밋 기록 확인
+
+실제 실행 화면:
+
+- [공개 저장소 Clone 및 로그 확인 화면](prompt-manager_과제제출증빙/35_공개저장소_Clone및로그확인.png)
+
+![공개 저장소 Clone 및 로그 확인](prompt-manager_과제제출증빙/35_공개저장소_Clone및로그확인.png)
+
+### 기능 단위 커밋 정책
+
+커밋은 한 번에 여러 기능을 섞지 않고 하나의 기능 또는 하나의 문서 보완 단위로 생성했다. 이를 통해 오류가 발생했을 때 어떤 기능에서 문제가 생겼는지 쉽게 찾고, 필요한 변경만 확인하거나 되돌릴 수 있도록 했다.
+
+커밋 기준은 다음과 같다.
+
+1. 기능 하나를 완성하고 실행 확인까지 끝낸 후 커밋
+2. 관련 없는 코드와 문서 변경은 같은 커밋에 섞지 않음
+3. 커밋 전 `git status`와 실행 결과 확인
+4. 커밋 메시지는 “대상 + 수행한 작업” 형식으로 작성
+5. 기능 개발은 `구현`, 문서 변경은 `보완` 또는 `완성`, 병합 작업은 `병합`으로 표현
+
+커밋 메시지 예:
+
+```text
+프롬프트 전체 목록 보기 기능 구현
+카테고리별 프롬프트 조회 기능 구현
+제목과 내용 키워드 검색 기능 구현
+즐겨찾기 추가와 해제 기능 구현
+README 프로그램 설명과 실행 방법 완성
+데이터 구조와 반복문 및 저장 정책 설계 보완
+```
+
+실제 커밋 기록:
+
+- [전체 커밋 기록](https://github.com/silverhealthleader-source/prompt-manager/commits/main/)
+- [`506b0f7` 데이터 구조와 반복문 및 저장 정책 설계 보완](https://github.com/silverhealthleader-source/prompt-manager/commit/506b0f74f3d2e444951884a00c9488e528c7cead)
+- [`b2f5a58` 필수과제 실행 증빙 문서와 캡처 보완](https://github.com/silverhealthleader-source/prompt-manager/commit/b2f5a58527c5c9b86f2ab7cfe949dbba51e58c95)
+- [`364fc74` 즐겨찾기 목록 조회 기능 구현](https://github.com/silverhealthleader-source/prompt-manager/commit/364fc74d50f2e9047824d56374a3b20cb6ead267)
+- [`71db8df` 즐겨찾기 추가와 해제 기능 구현](https://github.com/silverhealthleader-source/prompt-manager/commit/71db8df539d06f6c7cdc26e40be06dac4f24b8d0)
+- [`8dc37ff` 프롬프트 상세 보기와 번호 검증 기능 구현](https://github.com/silverhealthleader-source/prompt-manager/commit/8dc37ffa451f4bb39bfee84820475698ee88b6aa)
+- [`febc6f8` 제목과 내용 키워드 검색 기능 구현](https://github.com/silverhealthleader-source/prompt-manager/commit/febc6f8af2009a0fd01c97887440ed0118ebabb3)
+- [`1e9cf43` 카테고리별 프롬프트 조회 기능 구현](https://github.com/silverhealthleader-source/prompt-manager/commit/1e9cf43f803f838166f93c98e0ad36132bf03076)
+
+### 브랜치 생성과 병합 실행 증빙
+
+목록 기능은 `feature/prompt-list` 브랜치에서 분리하여 개발했다. 기능 구현과 테스트를 완료한 후 `main`으로 이동하여 `--no-ff` 방식으로 병합했다. `--no-ff`를 사용한 이유는 기능 브랜치에서 작업한 이력을 Git 그래프에 별도로 남기기 위해서다.
+
+실행 명령:
+
+```powershell
+git checkout -b feature/prompt-list
+git add prompt_manager.py
+git commit -m "프롬프트 전체 목록 보기 기능 구현"
+git checkout main
+git merge --no-ff feature/prompt-list
+git log --oneline --graph --decorate --all
+```
+
+실제 브랜치 및 병합 증빙:
+
+- [GitHub 브랜치 목록](https://github.com/silverhealthleader-source/prompt-manager/branches)
+- [`feature/prompt-list` 브랜치](https://github.com/silverhealthleader-source/prompt-manager/tree/feature/prompt-list)
+- [브랜치 생성·커밋·병합 그래프 화면](prompt-manager_과제제출증빙/19_브랜치생성_커밋_병합그래프.png)
+- [최종 Git 로그 그래프](prompt-manager_과제제출증빙/51_git_log_oneline_graph_최종.png)
+- [GitHub 브랜치 목록 화면](prompt-manager_과제제출증빙/56_GitHub_브랜치목록.png)
+
+![최종 Git 로그와 병합 그래프](prompt-manager_과제제출증빙/51_git_log_oneline_graph_최종.png)
+
+### 병합 충돌의 원인·해결·검증 과정
+
+#### 1. 충돌 원인
+
+로컬 컴퓨터와 GitHub 웹에서 `README.md`의 같은 위치를 서로 다르게 수정했다. 그 상태에서 `git pull --no-rebase origin main`을 실행하면서 Git이 두 변경 사항을 자동으로 선택하지 못해 `README.md` 내용 충돌이 발생했다.
+
+#### 2. 충돌 확인
+
+다음 명령으로 충돌 파일을 확인했다.
+
+```powershell
+git status
+```
+
+`README.md`에 다음 충돌 표시가 생성된 것을 확인했다.
+
+```text
+<<<<<<< HEAD
+로컬 변경 내용
+=======
+GitHub에서 받은 변경 내용
+>>>>>>> origin/main
+```
+
+#### 3. 충돌 해결
+
+1. VS Code에서 `README.md`를 열었다.
+2. 로컬의 개발·실행 증빙 링크를 유지했다.
+3. 충돌 표시인 `<<<<<<<`, `=======`, `>>>>>>>`를 제거했다.
+4. 파일을 저장했다.
+5. 다음 명령으로 해결 완료 상태를 등록했다.
+
+```powershell
+git add README.md
+git commit -m "GitHub 변경사항 병합 및 README 충돌 해결"
+```
+
+#### 4. 해결 결과 검증
+
+다음 명령으로 충돌이 남아 있지 않은지 확인했다.
+
+```powershell
+git status
+git log --oneline --graph --decorate --all
+git push origin main
+```
+
+검증 결과:
+
+- `README.md` 충돌 표시 제거 확인
+- 병합 커밋 `8e8bf4c` 생성 확인
+- `main` 브랜치로 push 완료
+- `nothing to commit, working tree clean` 확인
+
+실제 증빙:
+
+- [Push 거절과 GitHub 변경 사항 확인](prompt-manager_과제제출증빙/09_Push거절_GitHub변경사항확인.png)
+- [README 충돌 해결과 병합 완료](prompt-manager_과제제출증빙/11_README충돌해결_병합완료.png)
+- [`8e8bf4c` 충돌 해결 병합 커밋](https://github.com/silverhealthleader-source/prompt-manager/commit/8e8bf4c1174a79911625f24a73f8c04adc8dabc4)
+
+![README 충돌 해결과 병합 완료](prompt-manager_과제제출증빙/11_README충돌해결_병합완료.png)
+
 ## 저장소 주소
 
 https://github.com/silverhealthleader-source/prompt-manager
@@ -200,3 +348,4 @@ https://github.com/silverhealthleader-source/prompt-manager
 
 - [필수과제 개발 및 실행 증빙](EVIDENCE.md)
 - [실행 결과 이미지 폴더](prompt-manager_과제제출증빙)
+

@@ -135,9 +135,3 @@ python prompt_manager.py
 
 https://github.com/silverhealthleader-source/prompt-manager
 
-## 개발 및 실행 증빙
-
-개발 환경 설정, 공개 저장소 clone, 프로그램 실행 결과, 브랜치 생성·병합 및 충돌 해결 과정은 다음 문서에 정리했다.
-
-- [필수과제 개발 및 실행 증빙](EVIDENCE.md)
-- [실행 결과 이미지 폴더](prompt-manager_과제제출증빙)
